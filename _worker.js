@@ -459,10 +459,10 @@ async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawCli
 				proxyIP = atob('UFJPWFlJUC50cDEuMDkwMjI3Lnh5eg==');
 			} else if (proxyIP.includes(']:')) {
 				portRemote = proxyIP.split(']:')[1] || portRemote;
-				proxyIP = proxyIP.split(']:')[0] || proxyIP;
+				proxyIP = proxyIP.split(']:')[0] + "]" || proxyIP;
 			} else if (proxyIP.split(':').length === 2) {
 				portRemote = proxyIP.split(':')[1] || portRemote;
-				proxyIP = proxyIP.split(']:')[0] + "]" || proxyIP;
+				proxyIP = proxyIP.split(':')[0] || proxyIP;
 			}
 			if (proxyIP.includes('.tp')) portRemote = proxyIP.split('.tp')[1].split('.')[0] || portRemote;
 			tcpSocket = await connectAndWrite(proxyIP || addressRemote, portRemote);
